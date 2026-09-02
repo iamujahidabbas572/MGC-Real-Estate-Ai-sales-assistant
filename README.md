@@ -9,17 +9,11 @@
 
 ## 🎥 Video Demo
 
-Watch the full 4-part end-to-end demonstration below (Document Assistant Q&A, SQL Schema & Deduplication queries, ML Lead Scoring baseline, and the live Flask Web Application):
+Watch the full 4-part end-to-end demonstration (Document Assistant Q&A, SQL Schema & Deduplication queries, ML Lead Scoring baseline, and the live Flask Web Application):
 
-https://github.com/user-attachments/assets/demo-video-placeholder (or click below)
-
-> **[▶️ Click here to view/download the Demo Video: `All 4 parts demo.mp4`](./All%204%20parts%20demo.mp4)**
-
-<p align="center">
-  <video src="All%204%20parts%20demo.mp4" controls="controls" width="100%" style="max-height: 500px;">
-    Your browser does not support the video tag. You can <a href="All%204%20parts%20demo.mp4">download the video directly here</a>.
-  </video>
-</p>
+> **[▶️ Click Here to Watch / Download Full Demo Video (`All 4 parts demo.mp4`)](https://github.com/iamujahidabbas572/MGC-Real-Estate-Ai-sales-assistant/raw/main/All%204%20parts%20demo.mp4)**
+>
+> *(Direct link: [https://raw.githubusercontent.com/iamujahidabbas572/MGC-Real-Estate-Ai-sales-assistant/main/All%204%20parts%20demo.mp4](https://raw.githubusercontent.com/iamujahidabbas572/MGC-Real-Estate-Ai-sales-assistant/main/All%204%20parts%20demo.mp4))*
 
 ---
 
