@@ -111,27 +111,6 @@ A clean, functional single-page Flask web application (`app.py` + `templates/ind
 
 ---
 
-## 📋 Interview & Submission Responses
-
-These are the answers to the 5 standard evaluation questions:
-
-1. **How does your system handle a question the documents don't answer?**
-   > *It uses strict grounding logic: when an inquiry asks for unconfirmed or absent information (e.g., rental yield or anchor tenant), it actively refuses to speculate, cites the relevant document clause, and redirects the user to the sales office or marketing manager.*
-
-2. **What did you clean, change or drop in the leads data, and why?**
-   > *I dropped `token_amount_received_pkr` because it is pure target leakage (leads with tokens are already closed conversions). I removed identifiers (`lead_id`, `crm_record_hash`), normalized chaotic city casings (`ISB`, `khi`, `Rwp`), imputed missing bedroom/budget/response metrics with medians, and removed duplicate CRM records.*
-
-3. **Which metric did you use to judge your model, and why that one?**
-   > *F1 Score on the positive class. Because only 6.9% of leads convert, raw accuracy is meaningless (predicting all 0s gives 93% accuracy). F1 balances false positives against false negatives to give an honest, actionable baseline for a sales team.*
-
-4. **What's unfinished, and what would you do with more time?**
-   > *With more time, I would connect a generative LLM (Gemini API) on top of the vector retriever for fluid rephrasing, engineer temporal features from `created_at` (day-of-week, time-of-day), test XGBoost/LightGBM with hyperparameter tuning, and integrate SHAP values in the UI for explainable lead scoring.*
-
-5. **Which AI tools did you use, and where did they help or get in the way?**
-   > *I used AI tools for rapid scaffolding of the Flask endpoints, regex cleaning rules, and initial SQLite boilerplate. Critical domain oversight was applied to catch target leakage in `token_amount_received_pkr` and ensure strict document conflict detection.*
-
----
-
 ## 📁 Repository Structure
 
 ```
