@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MGC Aurora Heights — Sales Assistant</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: "Segoe UI", system-ui, sans-serif; background: #f5f5f5; color: #222; line-height: 1.6; }
+        .header { background: #1a1a2e; color: #e0c097; padding: 18px 0; text-align: center; }
+        .header h1 { font-size: 22px; font-weight: 600; }
+        .header p { font-size: 13px; color: #aaa; margin-top: 4px; }
+        .container { max-width: 900px; margin: 24px auto; padding: 0 16px; }
+        .tabs { display: flex; gap: 0; margin-bottom: 0; }
+        .tab { flex: 1; padding: 12px; text-align: center; cursor: pointer; background: #ddd; border: 1px solid #ccc;
+               font-weight: 600; font-size: 14px; color: #555; }
+        .tab.active { background: #fff; border-bottom: none; color: #1a1a2e; }
+        .tab:first-child { border-radius: 8px 0 0 0; }
+        .tab:last-child { border-radius: 0 8px 0 0; }
+        .panel { display: none; background: #fff; border: 1px solid #ccc; border-top: none; border-radius: 0 0 8px 8px; padding: 24px; }
+        .panel.active { display: block; }
+        label { display: block; font-size: 13px; font-weight: 600; color: #555; margin-bottom: 4px; }
+        input, select, textarea { width: 100%; padding: 10px 12px; border: 1px solid #ccc; border-radius: 6px;
+                                   font-size: 14px; font-family: inherit; margin-bottom: 14px; }
+        textarea { resize: vertical; min-height: 50px; }
+        input:focus, select:focus, textarea:focus { outline: none; border-color: #e0c097; }
+        .btn { display: inline-block; padding: 11px 24px; background: #1a1a2e; color: #e0c097; border: none;
+               border-radius: 6px; font-size: 14px; font-weight: 600; cursor: pointer; }
+        .btn:hover { background: #2a2a4e; }
+        .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .result { margin-top: 20px; padding: 16px; background: #fafaf5; border: 1px solid #e0d8c8;
+                  border-radius: 8px; white-space: pre-wrap; font-size: 14px; line-height: 1.7; }
+        .row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+        h3 { font-size: 16px; color: #1a1a2e; margin-bottom: 16px; }
+        .hint { font-size: 12px; color: #999; margin: -10px 0 14px; }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>MGC Aurora Heights — Sales Assistant</h1>
+    <p>Document Q&amp;A &bull; Lead Scoring</p>
+</div>
+
+<div class="container">
+    <div class="tabs">
+        <div class="tab active" onclick="switchTab('qa')">📄 Document Assistant</div>
+        <div class="tab" onclick="switchTab('scoring')">📊 Lead Scorer</div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!--  TAB 1: Document Q&A                                         -->
+    <!-- ============================================================ -->
+    <div id="qa" class="panel active">
+        <h3>Ask a question about MGC Aurora Heights</h3>
+        <p class="hint">Answers are grounded in the official brochure, price list, and booking policy documents.</p>
+
+        <label for="question">Your question</label>
+        <textarea id="question" placeholder="e.g. What's the base price of a 2-bed in Block B?"></textarea>
+
+        <button class="btn" id="askBtn" onclick="askQuestion()">Ask</button>
+
+        <div id="qaResult" class="result" style="display:none;"></div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!--  TAB 2: Lead Scoring                                         -->
+    <!-- ============================================================ -->
+    <div id="scoring" class="panel">
+        <h3>Score a lead's conversion likelihood</h3>
+        <p class="hint">Enter the lead details to get a conversion probability score.</p>
+
+        <div class="row">
+            <div>
+                <label for="source">Lead Source</label>
+                <select id="source">
+                    <option>Facebook Ads</option>
+                    <option>Property Portal</option>
+                    <option>Google Search</option>
+                    <option>Instagram</option>
+                    <option>Referral</option>
+                    <option>Walk-in</option>
+                    <option>WhatsApp Campaign</option>
+                    <option>Expo Stall</option>
+                    <option>Billboard</option>
+                </select>
+            </div>
+            <div>
+                <label for="city">City</label>
+                <select id="city">
+                    <option>Islamabad</option>
+                    <option>Rawalpindi</option>
+                    <option>Lahore</option>
+                    <option>Karachi</option>
+                    <option>Peshawar</option>
+                    <option>Faisalabad</option>
+                    <option>Multan</option>
+                    <option>Gujranwala</option>
+                    <option>Abbottabad</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div>
+                <label for="property_type">Property Type</label>
+                <select id="property_type">
+                    <option>Apartment</option>
+                    <option>Plot</option>
+                    <option>Villa</option>
+                    <option>Commercial Shop</option>
+                    <option>Penthouse</option>
+                    <option>Farmhouse</option>
+                </select>
+            </div>
+            <div>
+                <label for="budget">Budget (PKR Lac)</label>
+                <input id="budget" type="number" value="100" min="10" max="2000">
+            </div>
+        </div>
+
+        <div class="row-3">
+            <div>
+                <label for="bedrooms">Bedrooms</label>
+                <select id="bedrooms">
+                    <option value="1">1</option>
+                    <option value="2" selected>2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            </div>
+            <div>
+                <label for="calls_made">Calls Made</label>
+                <input id="calls_made" type="number" value="1" min="0" max="50">
+            </div>
+            <div>
+                <label for="site_visits">Site Visits</label>
+                <input id="site_visits" type="number" value="0" min="0" max="10">
+            </div>
+        </div>
+
+        <div class="row-3">
+            <div>
+                <label for="whatsapp_replies">WhatsApp Replies</label>
+                <input id="whatsapp_replies" type="number" value="2" min="0" max="50">
+            </div>
+            <div>
+                <label for="first_response">First Response (mins)</label>
+                <input id="first_response" type="number" value="30" min="0" max="1440">
+            </div>
+            <div>
+                <label for="agent_exp">Agent Experience (yrs)</label>
+                <input id="agent_exp" type="number" value="2.0" step="0.1" min="0" max="20">
+            </div>
+        </div>
+
+        <div class="row-3">
+            <div>
+                <label for="is_overseas">Overseas Buyer?</label>
+                <select id="is_overseas"><option value="0">No</option><option value="1">Yes</option></select>
+            </div>
+            <div>
+                <label for="referred">Referred by Client?</label>
+                <select id="referred"><option value="0">No</option><option value="1">Yes</option></select>
+            </div>
+            <div>
+                <label for="financing">Financing Approved?</label>
+                <select id="financing"><option value="0">No</option><option value="1">Yes</option></select>
+            </div>
+        </div>
+
+        <button class="btn" id="scoreBtn" onclick="scoreLead()">Score This Lead</button>
+
+        <div id="scoreResult" class="result" style="display:none;"></div>
+    </div>
+</div>
+
+<script>
+function switchTab(tab) {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    document.getElementById(tab).classList.add('active');
+    event.target.classList.add('active');
+}
+
+async function askQuestion() {
+    const btn = document.getElementById('askBtn');
+    const question = document.getElementById('question').value.trim();
+    const resultDiv = document.getElementById('qaResult');
+
+    if (!question) { alert('Please enter a question.'); return; }
+
+    btn.disabled = true;
+    btn.textContent = 'Thinking...';
+    resultDiv.style.display = 'block';
+    resultDiv.textContent = 'Searching documents...';
+
+    try {
+        const resp = await fetch('/ask', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ question })
+        });
+        const data = await resp.json();
+        resultDiv.textContent = data.answer || data.error;
+    } catch (e) {
+        resultDiv.textContent = 'Error: ' + e.message;
+    }
+
+    btn.disabled = false;
+    btn.textContent = 'Ask';
+}
+
+async function scoreLead() {
+    const btn = document.getElementById('scoreBtn');
+    const resultDiv = document.getElementById('scoreResult');
+
+    btn.disabled = true;
+    btn.textContent = 'Scoring...';
+    resultDiv.style.display = 'block';
+    resultDiv.textContent = 'Calculating score...';
+
+    const payload = {
+        source: document.getElementById('source').value,
+        city: document.getElementById('city').value,
+        property_type: document.getElementById('property_type').value,
+        budget_pkr_lac: document.getElementById('budget').value,
+        bedrooms: document.getElementById('bedrooms').value,
+        calls_made: document.getElementById('calls_made').value,
+        site_visits: document.getElementById('site_visits').value,
+        whatsapp_replies: document.getElementById('whatsapp_replies').value,
+        first_response_minutes: document.getElementById('first_response').value,
+        agent_experience_years: document.getElementById('agent_exp').value,
+        is_overseas: document.getElementById('is_overseas').value,
+        referred_by_existing_client: document.getElementById('referred').value,
+        has_financing_approved: document.getElementById('financing').value,
+        area: "Unknown",
+        total_call_seconds: 120,
+    };
+
+    try {
+        const resp = await fetch('/score', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        });
+        const data = await resp.json();
+        if (data.error) {
+            resultDiv.textContent = 'Error: ' + data.error;
+        } else {
+            resultDiv.textContent = `Conversion Score: ${data.score}%\n${data.label}`;
+        }
+    } catch (e) {
+        resultDiv.textContent = 'Error: ' + e.message;
+    }
+
+    btn.disabled = false;
+    btn.textContent = 'Score This Lead';
+}
+</script>
+
+</body>
+</html>
