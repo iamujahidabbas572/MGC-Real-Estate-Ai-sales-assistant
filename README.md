@@ -11,9 +11,10 @@
 
 Watch the full 4-part end-to-end demonstration (Document Assistant Q&A, SQL Schema & Deduplication queries, ML Lead Scoring baseline, and the live Flask Web Application):
 
-> **[▶️ Click Here to Watch / Download Full Demo Video (`All 4 parts demo.mp4`)](https://github.com/iamujahidabbas572/MGC-Real-Estate-Ai-sales-assistant/raw/main/All%204%20parts%20demo.mp4)**
->
-> *(Direct link: [https://raw.githubusercontent.com/iamujahidabbas572/MGC-Real-Estate-Ai-sales-assistant/main/All%204%20parts%20demo.mp4](https://raw.githubusercontent.com/iamujahidabbas572/MGC-Real-Estate-Ai-sales-assistant/main/All%204%20parts%20demo.mp4))*
+[![Watch the Loom Demo Video](https://cdn.loom.com/sessions/thumbnails/3ad0e2e23c994a21b29bc4d7c1b58a27-with-play.gif)](https://www.loom.com/share/3ad0e2e23c994a21b29bc4d7c1b58a27)
+
+> **[▶️ Click Here to Watch the Live Loom Demo Video](https://www.loom.com/share/3ad0e2e23c994a21b29bc4d7c1b58a27)**  
+> *(Alternative direct repository MP4 file: [`All 4 parts demo.mp4`](./All%204%20parts%20demo.mp4))*
 
 ---
 
